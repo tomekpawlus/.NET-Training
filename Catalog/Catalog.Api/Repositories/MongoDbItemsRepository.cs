@@ -1,15 +1,15 @@
 ﻿using System;
-using Catalog.Entities;
-using Catalog.Settings;
+using Catalog.Api.Entities;
+using Catalog.Api.Settings;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace Catalog.Repositories
+namespace Catalog.Api.Repositories
 {
     public class MongoDbItemsRepository : IItemRepository
     {
-      
+
 
         private readonly IMongoCollection<Item> itemsCollection;
         private readonly FilterDefinitionBuilder<Item> filterBuilder = Builders<Item>.Filter;
@@ -32,7 +32,7 @@ namespace Catalog.Repositories
         public async Task DeleteItemAsync(Guid id)
         {
             var filter = filterBuilder.Eq(item => item.Id, id);
-             await itemsCollection.DeleteOneAsync(filter);
+            await itemsCollection.DeleteOneAsync(filter);
         }
 
 
@@ -53,7 +53,7 @@ namespace Catalog.Repositories
         public async Task UpdateItemAsync(Item item)
         {
             var filter = filterBuilder.Eq(existingItem => existingItem.Id, item.Id);
-           await itemsCollection.ReplaceOneAsync(filter, item);
+            await itemsCollection.ReplaceOneAsync(filter, item);
         }
     }
 }

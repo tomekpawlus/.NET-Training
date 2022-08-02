@@ -1,15 +1,16 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Catalog.Dtos
+namespace Catalog.Api.Dtos
 {
-    public class UpdateItemDto
+    public class CreateItemDto
     {
 
         [Required]
-        public string Name { get; init; }
+        public string Name { get; init; } = null!;
 
         [Required]
+        [Range(1, 1000)]
         public decimal Price { get; init; }
 
     }

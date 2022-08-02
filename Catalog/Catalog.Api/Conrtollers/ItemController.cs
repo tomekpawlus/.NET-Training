@@ -1,10 +1,10 @@
 ﻿using System;
-using Catalog.Dtos;
-using Catalog.Entities;
-using Catalog.Repositories;
+using Catalog.Api.Dtos;
+using Catalog.Api.Entities;
+using Catalog.Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Catalog.Conrtollers
+namespace Catalog.Api.Conrtollers
 {
 
     [ApiController]
@@ -67,7 +67,8 @@ namespace Catalog.Conrtollers
             {
                 return NotFound();
             }
-            Item updatedItem =  existingItem with{
+            Item updatedItem = existingItem with
+            {
                 Name = updateItemDto.Name,
                 Price = updateItemDto.Price
             };
@@ -80,7 +81,7 @@ namespace Catalog.Conrtollers
         public async Task<ActionResult> DeleteItemAsync(Guid id)
         {
             var existengItem = await repository.GetItemAsync(id);
-            if(existengItem is null)
+            if (existengItem is null)
             {
                 return NotFound();
             }

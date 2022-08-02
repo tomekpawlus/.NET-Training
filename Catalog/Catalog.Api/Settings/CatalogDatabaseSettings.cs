@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Catalog.Settings
+namespace Catalog.Api.Settings
 {
     public class CatalogDatabaseSettings
     {
